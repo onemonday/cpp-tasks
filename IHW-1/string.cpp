@@ -3,13 +3,21 @@
 //
 
 #include "string.h"
+#include "iostream"
+#include "cstring"
 
-str::str(unsigned int length, char* word) {
-    this->length = length;
+str::str() {
+    this->length = 0;
+    this->string = nullptr;
 
-    if (word == nullptr) this->string = new char[length+1];
-    else this->string = word;
 }
+
+//str::str(unsigned int length, char* word) {
+//    this->length = length;
+//
+//    if (word == nullptr) this->string = new char[length+1];
+//    else this->string = word;
+//}
 
 
 str::str(str &str) {
@@ -45,4 +53,18 @@ str str::substring(unsigned int startSymbol, unsigned int substringLength) {
     result.string[substringLength] = '\0';
 
     return result;
+}
+
+void str::setStr() {
+    char input[255];
+    std::cout << "Enter string";
+    std::cin >> input;
+    length = strlen(input) + 1;
+
+    string = new char[length];
+    strcpy(string, input);
+}
+
+void str::print() {
+
 }

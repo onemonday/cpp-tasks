@@ -8,11 +8,14 @@
 
 class str {
 public:
-    str(unsigned int length = 0, char* word = nullptr);
+    str();
+    // str(unsigned int length = 0, char* word = nullptr);
     str(str& str);
     ~str();
 
-    str operator+(str& right);
+    void setStr();
+    void print();
+    str operator+ (str& right);
     str substring (unsigned int startSymbol, unsigned int substringLength);
 private:
     unsigned int length;
