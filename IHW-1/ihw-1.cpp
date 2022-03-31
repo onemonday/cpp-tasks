@@ -17,7 +17,7 @@ int main() {
     result = str1 + str2;
     result.print();
 
-    result1 = str1.substring(1, 3);
+    result1 = str1.substring(9, 15);
     result1.print();
 
     return 0;

@@ -9,9 +9,7 @@
 class str {
 public:
     str();
-    // str(unsigned int length = 0, char* word = nullptr);
     str(str& str);
-    //~str();
 
     void setStr();
     void print();

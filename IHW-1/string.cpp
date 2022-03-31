@@ -11,35 +11,18 @@ str::str() {
     this->string = nullptr;
 }
 
-//str::str(unsigned int length, char* word) {
-//    this->length = length;
-//
-//    if (word == nullptr) this->string = new char[length+1];
-//    else this->string = word;
-//}
-
-
 str::str(str &str) {
+    this->length = str.length;
     this->string = new char[str.length];
 
-    for (int i = 0; i <= str.length; i++)
+    for (int i = 0; i < str.length; i++)
         this->string[i] = str.string[i];
 }
-
-
-//str::~str() {
-//    delete this->string;
-//}
-
 
 str str::operator+(str& right) {
     str result;
     result.length = this->length + right.length - 1;
     result.string = new char[result.length];
-    //result.string[result.length - 1] = '\0';
-
-    /*for (int i = 0; i < result.length; i++)
-        result.string[i] = 34;*/
 
     for (unsigned int i = 0; i < this->length - 1; i++)
         result.string[i] = this->string[i];
@@ -56,6 +39,8 @@ str str::operator+(str& right) {
 
 str str::substring(unsigned int startSymbol, unsigned int substringLength) {
     str result;
+    if (startSymbol > this->length-1) return result;
+
     result.length = substringLength + 1;
     result.string = new char[result.length];
     unsigned int substringPointer = 0;
@@ -63,6 +48,7 @@ str str::substring(unsigned int startSymbol, unsigned int substringLength) {
     for (unsigned int i = startSymbol; i < startSymbol + substringLength; i++) {
         result.string[substringPointer] = this->string[i];
         substringPointer++;
+        if (i == this->length-1) break;
     }
     result.string[substringLength + 1] = '\0';
 
