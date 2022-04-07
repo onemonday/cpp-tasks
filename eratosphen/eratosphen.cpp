@@ -17,5 +17,5 @@ int main() {
     for (int i = 0; i < size; i++)
         array[i] = std::numeric_limits<unsigned int>::max();
 
-
-};
+    return 0;
+}
