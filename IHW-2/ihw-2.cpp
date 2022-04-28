@@ -5,5 +5,11 @@
 #include "iostream"
 
 int main() {
-    std::cout << "hello world";
+    unsigned int n = 0;
+    int* array = new int[n];
+    std::cout << "Enter elements" << std::endl;
+    while
+
+
+
 }
