@@ -3,7 +3,15 @@
 //
 #include <iostream>
 #include <fstream>
+#include "string"
+#include "cstring"
 #include "sstream"
+
+void toInt (std::string& str, int& number) {
+    std::stringstream ss;
+    ss << str;
+    ss >> number;
+}
 
 bool checkFullness(bool** graph, int& nNodes) {
     for (int i = 0; i < nNodes; i++)
@@ -44,18 +52,30 @@ int main (){
 
     int stringNumber = -1;
     char c;
+    std::string currentNumber = "";
+
     while (file) {
         file.get(c);
-        if (c == '\n') {
-            stringNumber++;
-            continue;
-        } else if (c == ' ') continue;
 
-        std::stringstream ss;
-        int columnNumber;
-        ss << c;
-        ss >> columnNumber;
-        columnNumber--;
+        int columnNumber = 0;
+        if (c != '\n' && c != ' ') {
+            currentNumber += c;
+        } else {
+            //columnNumber = std::stoi(currentNumber);
+            toInt(currentNumber, columnNumber);
+            columnNumber--;
+            if (c == '\n') stringNumber++;
+            currentNumber = "";
+            continue;
+        }
+
+
+//
+//        std::stringstream ss;
+//        int columnNumber;
+//        ss << c;
+//        ss >> columnNumber;
+//        columnNumber--;
 
         matrix[stringNumber][columnNumber] = true;
         std::cout << c << " is going to " << stringNumber << " " << columnNumber << std::endl;
