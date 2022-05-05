@@ -1,6 +1,3 @@
-//
-// Created by karak on 5/5/2022.
-//
 #include "iostream"
 #include "fstream"
 
