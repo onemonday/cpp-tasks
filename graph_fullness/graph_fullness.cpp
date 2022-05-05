@@ -60,10 +60,16 @@ int main (){
         int columnNumber = 0;
         if (c != '\n' && c != ' ') {
             currentNumber += c;
+            continue;
         } else {
             //columnNumber = std::stoi(currentNumber);
-            toInt(currentNumber, columnNumber);
-            columnNumber--;
+            if (!currentNumber.empty()) {
+                toInt(currentNumber, columnNumber);
+                columnNumber--;
+
+                matrix[stringNumber][columnNumber] = true;
+                std::cout << currentNumber << " is going to " << stringNumber << " " << columnNumber << std::endl;
+            }
             if (c == '\n') stringNumber++;
             currentNumber = "";
             continue;
@@ -76,9 +82,6 @@ int main (){
 //        ss << c;
 //        ss >> columnNumber;
 //        columnNumber--;
-
-        matrix[stringNumber][columnNumber] = true;
-        std::cout << c << " is going to " << stringNumber << " " << columnNumber << std::endl;
     }
 
     std::cout << "Current graph:" << std::endl;
