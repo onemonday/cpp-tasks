@@ -79,7 +79,7 @@ double simpson (mathFunction f, double leftBorder,
 
         h /= 2;
         nextS = h * (oddSum + evenSum) / 3;
-    } while (fabs(prevS - nextS) < epsilon);
+    } while (fabs(prevS - nextS) >= epsilon);
 
     return nextS;
 }
@@ -108,46 +108,50 @@ int main() {
     std::ifstream file (R"(C:\Users\karak\Documents\Code\cpp-tasks\IHW-3\testfile.txt)");
     if (!file.is_open()) return 1;
 
-    input data;
-    data.readFile(file);
-    file.close();
+    while(file) {
+        input data;
+        data.readFile(file);
 
-    mathFunction function;
-    switch(data.getFunctionNumber()) {
-        case 1:
-            function = f1;
-            break;
-        case 2:
-            function = f2;
-            break;
-        case 3:
-            function = f3;
-            break;
-        default:
-            return 4;
+
+        mathFunction function;
+        switch (data.getFunctionNumber()) {
+            case 1:
+                function = f1;
+                break;
+            case 2:
+                function = f2;
+                break;
+            case 3:
+                function = f3;
+                break;
+            default:
+                return 4;
+        }
+
+        std::cout << "Integral value: ";
+        switch (data.getMethodNumber()) {
+            case 1:
+                std::cout << leftRectangle(function, data.getBorderLeft(), data.getBorderRight(),
+                                           data.getPrecision());
+                break;
+            case 2:
+                std::cout << rightRectangle(function, data.getBorderLeft(), data.getBorderRight(),
+                                            data.getPrecision());
+                break;
+            case 3:
+                std::cout << simpson(function, data.getBorderLeft(), data.getBorderRight(),
+                                     data.getPrecision());
+                break;
+            case 4:
+                std::cout << trapezoid(function, data.getBorderLeft(), data.getBorderRight(),
+                                       data.getPrecision());
+                break;
+            default:
+                return 5;
+        }
+
+        std::cout << std::endl;
+        char c;
+        file.get(c);
     }
-
-    std::cout << "Integral value: ";
-    switch (data.getMethodNumber()) {
-        case 1:
-            std::cout << leftRectangle(function, data.getBorderLeft(), data.getBorderRight(),
-                                       data.getPrecision());
-            break;
-        case 2:
-            std::cout << rightRectangle(function, data.getBorderLeft(), data.getBorderRight(),
-                                       data.getPrecision());
-            break;
-        case 3:
-            std::cout << simpson(function, data.getBorderLeft(), data.getBorderRight(),
-                                       data.getPrecision());
-            break;
-        case 4:
-            std::cout << trapezoid(function, data.getBorderLeft(), data.getBorderRight(),
-                                       data.getPrecision());
-            break;
-        default:
-            return 5;
-    }
-
-
 };
