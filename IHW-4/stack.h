@@ -16,9 +16,11 @@ private:
     node* head;
 public:
     stack();
-    void push(unsigned int number;);
+    void push(unsigned int number);
     unsigned int pop();
     unsigned int peep();
+
+    bool isEmpty();
 };
 
 

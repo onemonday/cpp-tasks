@@ -15,7 +15,8 @@ private:
     char* nodeColor;
 public:
     ~graph();
-    void read(std::ifstream file);
+    void read(std::ifstream &file);
+    void DFS();
     bool isTree();
 };
 

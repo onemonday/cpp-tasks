@@ -5,7 +5,8 @@
 #include "stack.h"
 
 stack::stack() {
-    this->head->next = nullptr;
+
+    this->head = nullptr;
 }
 
 void stack::push(unsigned int number) {
@@ -31,4 +32,9 @@ unsigned int stack::pop() {
 
 unsigned int stack::peep() {
     return this->head->number;
+}
+
+bool stack::isEmpty() {
+    if (this->head == nullptr) return true;
+    else return false;
 }
